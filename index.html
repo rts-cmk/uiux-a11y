@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+	<style>
+		.sr-only {
+			display: block;
+			opacity: 0;
+			height: 1px;
+			width: 1px;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		.input-hint {
+			font-size: 60%;
+			display: none;
+		}
+
+		.input-hint.show {
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	
+	<form>
+		<label for="username" aria-describedby="brugernavn-forklaring">
+			E-mail
+			<div aria-label="brugernavn-forklaring" class="input-hint" aria-hidden="true" aria-live="polite">
+				din@email.dk
+			</div>
+			<input type="text" name="username" id="username">
+		</label>
+		<label for="password">
+			Adgangskode
+			<input type="password" name="password" id="password">
+		</label>
+	</form>
+
+	<script>
+		let usernameField = document.querySelector("#username");
+		let inputHint = document.querySelector(".input-hint");
+
+		usernameField.addEventListener("focus", function(event) {
+			inputHint.classList.toggle("show");
+			inputHint.setAttribute("aria-hidden", "false");
+		});
+		
+		usernameField.addEventListener("blur", function(event) {
+			inputHint.classList.toggle("show");
+			inputHint.setAttribute("aria-hidden", "true");
+		})
+	</script>
+	
+</body>
+</html>
